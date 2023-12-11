@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const db = require('../database')
 
+const login = (req, res) => {
+    res.render('login')
+}
+
 const home = async (req, res) => {
   const data = await db.showProducts();
     res.render('home', {products: data})
@@ -94,5 +98,5 @@ const searchProductAdmin = async (req, res, next) => {
 }
 
 module.exports = {
-  home, user, admin, add, update, addProduct, updateProduct, deleteProduct, searchProductUser, searchProductAdmin
+  home, user, admin, add, update, addProduct, updateProduct, deleteProduct, searchProductUser, searchProductAdmin, login
 }

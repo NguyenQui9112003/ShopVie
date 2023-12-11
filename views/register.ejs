@@ -23,22 +23,22 @@
         <div class="row">
             <div class="col">
                 <div class="wrapper">
-                    <form action="">
+                    <form action="/acc/signup" method="post">
                         <h1>Register</h1>
                         <div class="input-field">
-                            <input type="text" placeholder="Username" required>
+                            <input name="username" type="text" placeholder="Username" required>
                             <i class="fa-solid fa-user"></i>
                         </div>
                         <div class="input-field">
-                            <input type="password" placeholder="Password" required>
+                            <input name="password" type="password" placeholder="Password" required>
                             <i class="fa-solid fa-lock"></i>
                         </div>
                         <div class="input-field">
-                            <input type="text" placeholder="Email" required>
+                            <input name="email" type="email" placeholder="Email" required>
                             <i class="fa-solid fa-envelope"></i>
                         </div>
-                        <input class="date" type="date" id="dobInput" required>
-                        <select class="select" name="Sex" id="sexOpt">
+                        <input name="date" class="date" type="date" required>
+                        <select name="sex" class="select">
                             <option value="Male" selected>Male</option>
                             <option value="Female">Female</option>
                         </select>
