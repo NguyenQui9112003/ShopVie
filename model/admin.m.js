@@ -1,25 +1,5 @@
-const pgp = require('pg-promise')({
-  capSQL: true
-})
+const db = require('../db/database')
 
-const cn = {
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: '207030',
-    database: 'ShopVie',
-    max: 30
-};
-
-const db = pgp(cn);
-
-// db.one('SELECT name FROM "Products" WHERE review = $1', [9])
-//     .then(user => {
-//         console.log(user.name); // print user name;
-//     })
-//     .catch(error => {
-//         console.log(error); // print the error;
-//     });
 const showProducts = async () => {
   let con = null;
   try {

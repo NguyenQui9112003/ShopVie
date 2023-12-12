@@ -37,7 +37,7 @@
             </div>
         </nav>
 
-        <a href="/add" class="btn btn-primary col-md-2 offset-md-10">Add</a>
+        <a href="/admin/add" class="btn btn-primary col-md-2 offset-md-10">Add</a>
 
         <div class="gallery" id="product">
             <% if(products.length > 0) { %>
@@ -56,10 +56,10 @@
                             <% } %>
                             <li><%= product.review %> (reviews)</li>
                         </ul>
-                        <form action="/update" method="post">
+                        <form action="/admin/update" method="post" style="display: inline-block;">
                             <button type="submit" class="btn btn-success " name="content" value="<%= product.content %>">Update</button>
                         </form>
-                        <form action="/admin/delete" method="post">
+                        <form action="/admin/delete" method="post" style="display: inline-block;">
                             <button type="submit" class="btn btn-danger " name="content" value="<%= product.content %>">Delete</button>
                         </form>
                     </div>

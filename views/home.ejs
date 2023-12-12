@@ -20,7 +20,7 @@
                     ShopVie
                 </a>
                 <div class="d-flex justify-content-end collapse navbar-collapse">
-                    <form action="/search" method="post" class="d-flex" role="search">
+                    <form action="/user/search" method="post" class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" name="search">
                             &nbsp;
                         <button class="btn btn-outline-info" type="submit">Search</button>
@@ -30,8 +30,8 @@
                             <i class="fa-solid fa-gear"></i>
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="/user"><i class="fa-solid fa-user"></i></a></li>
-                          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                          <li><a class="dropdown-item" href="/user/information"><i class="fa-solid fa-user"></i></a></li>
+                          <li><a class="dropdown-item" href="/user/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
                           <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-to-bracket"></i></a></li>
                         </ul>
                     </div>
@@ -56,6 +56,9 @@
                             <% } %>
                             <li><%= product.review %> (reviews)</li>
                         </ul>
+                        <form action="/cart" method="post">
+                            <button type="submit" class="btn btn-info " name="cart" value="<%= product.content %>">Add to cart</button>
+                        </form>
                     </div>
                 <% }) %>
             <% } %>

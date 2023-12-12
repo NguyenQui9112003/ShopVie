@@ -1,6 +1,6 @@
 const passport  = require('passport');
 const bcrypt = require('bcrypt');
-const accM = require('../models/account.m');
+const accM = require('../model/account.m');
 const MyStrategy = require('./myStrategies');
 
 passport.serializeUser((user, done) => {
