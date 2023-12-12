@@ -1,3 +1,7 @@
+const pgp = require("pg-promise")({
+  capSQL: true,
+});
+
 const db = require('../db/database')
 
 const add = async (tbName, obj) => {
