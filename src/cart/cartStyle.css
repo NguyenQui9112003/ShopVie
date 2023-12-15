@@ -27,7 +27,7 @@ th{
   text-align: left;
   padding: 5px;
   color: #fff;
-  background: #000;
+  background: #007bff;
   font-weight: normal;
 }
 
@@ -52,7 +52,7 @@ td button{
 }
 
 td button:hover{
-  background: orangered;
+  background: red;
   text-decoration: none;
   color: white;
 }
