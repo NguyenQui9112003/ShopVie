@@ -20,7 +20,12 @@ const searchProductGuest = async (req, res, next) => {
   }
   try {
     const products = await userM.searchProduct(req.body.search);
-    res.render("guestPage", { products: products });
+    if(products.length == 0) {
+      req.flash('error', 'Không tìm thấy ' + (req.body.search));
+      res.render("guestPage", { products: products });
+    } else {
+      res.render("guestPage", { products: products });
+    }
   } catch (error) {
     next(error);
   }

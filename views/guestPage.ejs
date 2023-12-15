@@ -12,9 +12,7 @@
     <title>Trang chủ</title>
 </head>
 
-<!-- <div class="not-found">
-    <p>NOT FOUND PRODUCT</p>
-</div> -->
+
 
 <body>
     <div class="container-fluid">
@@ -42,6 +40,26 @@
                 </div>
             </div>
         </nav>
+
+        <% if (messages.error) { %>
+
+            <div class="gallery" id="product">
+                <div class="card text-center">
+                    <div class="card-header alert alert-danger" role="alert">
+                        <%= messages.error %>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title" style="color: red;">Sản phẩm không tồn tại hoặc từ khóa tìm kiếm không chính xác</h5>
+                      <p class="card-text">Vui lòng thử lại hoặc </p>
+                      <a href="/" class="btn btn-primary">Về trang chủ</a>
+                    </div>
+                    <div class="card-footer text-body-secondary" id="current-time">
+                      
+                    </div>
+                  </div>
+                </div>
+
+          <% } %>
 
         <div class="gallery" id="product">
             <% if(products.length> 0) { %>
@@ -120,6 +138,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function updateCurrentTime() {
+          let currentTimeElement = document.getElementById('current-time');
+          let currentTime = new Date();
+          let hours = currentTime.getHours();
+          let minutes = currentTime.getMinutes();
+          let seconds = currentTime.getSeconds();
+          let timeString = 'Lịch sử tìm kiếm: ' + hours + ' giờ' + ' : ' + minutes + ' phút ' + ' : ' + seconds + ' giây';
+          currentTimeElement.innerHTML = timeString;
+        }
+        updateCurrentTime();
+    </script>
 </body>
 
 </html>

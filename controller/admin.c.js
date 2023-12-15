@@ -71,7 +71,12 @@ const searchProductAdmin = async (req, res, next) => {
   }
   try {
     const products = await adminM.searchProduct(req.body.search);
-    res.render("adminPage", { products: products });
+    if(products.length == 0) {
+      req.flash('error', 'Không tìm thấy ' + (req.body.search));
+      res.render("adminPage", { products: products });
+    } else {
+      res.render("adminPage", { products: products });
+    }
   } catch (error) {
     next(error);
   }

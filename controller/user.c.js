@@ -16,7 +16,12 @@ const searchProductUser = async (req, res, next) => {
   }
   try {
     const products = await userM.searchProduct(req.body.search);
-    res.render("userPage", { products: products });
+    if(products.length == 0) {
+      req.flash('error', 'Không tìm thấy ' + (req.body.search));
+      res.render("userPage", { products: products });
+    } else {
+      res.render("userPage", { products: products });
+    }
   } catch (error) {
     next(error);
   }

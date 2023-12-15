@@ -32,9 +32,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
-                    <form action="/logout" method="get">
-                        <button type="submit" class="btn btn-primary"><a href="/login" style="color: white; text-decoration:none" >Xác nhận</a></button>
-                    </form>
+                    <button type="submit" class="btn btn-primary"><a href="/admin/logout" style="color: white; text-decoration: none">Xác nhận</a></button>
                 </div>
             </div>
         </div>
@@ -68,6 +66,26 @@
         </nav>
 
         <div class="d-flex justify-content-center"><a href="/admin/add" class="btn btn-primary col-md-2">Thêm sản phẩm mới</a></div>
+
+        <% if (messages.error) { %>
+
+            <div class="gallery" id="product">
+                <div class="card text-center">
+                    <div class="card-header alert alert-danger" role="alert">
+                        <%= messages.error %>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title" style="color: red;">Sản phẩm không tồn tại hoặc từ khóa tìm kiếm không chính xác</h5>
+                      <p class="card-text">Vui lòng thử lại hoặc </p>
+                      <a href="/admin" class="btn btn-primary">Về trang chủ</a>
+                    </div>
+                    <div class="card-footer text-body-secondary" id="current-time">
+                      
+                    </div>
+                  </div>
+                </div>
+
+          <% } %>
 
         <div class="gallery" id="product">
             <% if(products.length> 0) { %>
@@ -128,6 +146,19 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        function updateCurrentTime() {
+          let currentTimeElement = document.getElementById('current-time');
+          let currentTime = new Date();
+          let hours = currentTime.getHours();
+          let minutes = currentTime.getMinutes();
+          let seconds = currentTime.getSeconds();
+          let timeString = 'Lịch sử tìm kiếm: ' + hours + ' giờ' + ' : ' + minutes + ' phút ' + ' : ' + seconds + ' giây';
+          currentTimeElement.innerHTML = timeString;
+        }
+        updateCurrentTime();
+    </script>
 </body>
 
 </html>
