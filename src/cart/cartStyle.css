@@ -7,9 +7,9 @@
 
 .cart-page {
   margin: 80px auto;
-  padding: 20px;
+  padding: 0px;
   border: 2px solid black;
-  border-radius: 8px;
+  border-radius: 5px;
   flex: 1;
   box-shadow: 4px 5px;
   background-color: #dddddd;
