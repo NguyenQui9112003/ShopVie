@@ -6,42 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./login.css">
-    <title>Login</title>
+    <title>Đăng nhập</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="wrapper">
-                    <form action="/acc/login" method="post">
-                        <h1>Login</h1>
-                        <div class="input-field">
-                            <input name="username" type="text" placeholder="Username" required>
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="input-field">
-                            <input name="password" type="password" placeholder="Password" required>
-                            <i class="fa-solid fa-lock"></i>
-                        </div>
+    <% if (messages.success) { %>
+        <div class="d-flex justify-content-end alert alert-success" role="alert">
+            <%= messages.success %>
+          </div>
+      <% } %>
 
-                        <div class="forgotten-password">
-                            <a href="#">Forgotten Password</a>
-                        </div>
-                        <button class="btn btn-primary" type="submit">Login</button>
-                        <div class="register-account">
-                            <p>
-                                Don't have account ?
-                                <a href="/register">Register</a>
-                            </p>
-                        </div>
-                    </form>
+
+    <% if (messages.error) { %>
+        <div class="d-flex justify-content-end alert alert-warning" role="alert">
+            Sai tài khoản hoặc mật khẩu!
+          </div>
+      <% } %>
+
+      
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/" style="font-size: 2em; color:blue"><i class="fa-solid fa-house" style="font-size: 1em; color:blue"></i>
+                    ShopVie
+                </a>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card border shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h3 class="card-title text-center mb-5 fw-light">Đăng nhập</h3>
+                        <form action="/acc/login" method="post" id="form">
+                            <div class="form-floating mb-3 input-control">
+                                <input name="username" type="text" class="form-control" placeholder="Username" id="username"> 
+                                <label for="floatingInput">Tên đăng nhập</label>
+                                <div class="error"></div>
+                            </div>
+                            <div class="form-floating mb-3 input-control">
+                                <input name="password" type="password" class="form-control" placeholder="Password" id="password">
+                                <label for="floatingPassword">Mật khẩu</label>
+                                <div class="error"></div>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Đăng nhập</button>
+                            </div>
+                            <div class="d-flex justify-content-center register-account pt-3">
+                                <p>
+                                    Bạn chưa có tài khoản ?
+                                    <a href="/register">Đăng kí ngay</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        const form = document.getElementById("form");
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
 
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            validateInput();
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+        }
+
+        const setSuccess = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputControl.classList.remove('error');
+        }
+
+        function validateUsername(usernameValue) {
+            if(usernameValue == ''){
+                setError(username, 'Tên đăng nhập không được để trống');
+                return false;
+            } else {
+                setSuccess(username);
+                return true;
+            }
+        }
+
+        function validatePassword(passwordValue) {
+            if(passwordValue == ''){
+                setError(password, 'Mật khẩu không được để trống');
+                return false;
+            } else {
+                setSuccess(password);
+                return true;
+            }
+        }
+
+        const validateInput = () => {
+            const usernameValue = username.value.trim();
+            const passwordValue = password.value.trim();
+            
+            const isValidUsername = validateUsername(usernameValue);
+            const isValidPassword = validatePassword(passwordValue);
+
+            if(isValidUsername && isValidPassword) {
+                form.submit();
+            }
+        }
+
+
+    </script>
 </body>
 
 </html>

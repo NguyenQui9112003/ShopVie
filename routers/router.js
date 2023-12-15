@@ -1,19 +1,21 @@
-const express = require('express')
-const router = express.Router()
-const adminRouter = require('./admin.r')
-const userRouter = require('./user.r')
-const accRouter = require('./account.r')
+const express = require("express");
+const router = express.Router();
+const guestRouter = require("./guest.r");
+const accRouter = require("./account.r");
+const adminRouter = require("./admin.r");
+const userRouter = require("./user.r");
 
-router.get('/', (req, res) => {
-  res.render('login');
+router.get("/login", (req, res) => {
+  res.render("login");
 });
 
-router.get('/register', (req, res) => {
-  res.render('register');
+router.get("/register", (req, res) => {
+  res.render("register");
 });
 
-router.use('/user', userRouter)
-router.use('/admin', adminRouter)
-router.use('/acc', accRouter)
+router.use("/", guestRouter);
+router.use("/acc", accRouter);
+router.use("/user", userRouter);
+router.use("/admin", adminRouter);
 
-module.exports = router
+module.exports = router;

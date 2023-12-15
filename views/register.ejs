@@ -9,40 +9,214 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./register.css">
-    <title>Register</title>
+    <title>Đăng kí</title>
 </head>
 
 <body>
+    <% if (messages.error) { %>
+        <div class="d-flex justify-content-end alert alert-warning" role="alert">
+            <%= messages.error %>
+          </div>
+      <% } %>
+
+
     <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/" style="font-size: 2em; color:blue"><i class="fa-solid fa-house"
+                        style="font-size: 1em; color:blue"></i>
+                    ShopVie
+                </a>
+            </div>
+        </nav>
+
         <div class="row">
-            <div class="col">
-                <div class="wrapper">
-                    <form action="/acc/signup" method="post">
-                        <h1>Register</h1>
-                        <div class="input-field">
-                            <input name="username" type="text" placeholder="Username" required>
-                            <i class="fa-solid fa-user"></i>
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card border shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h3 class="card-title text-center mb-5 fw-light">Tạo tài khoản mới</h3>
+                        <form action="/acc/signup" method="post" id="form">
+                            <div class="form-floating input-control mb-3">
+                                <input name="username" type="text" class="form-control"
+                                    placeholder="Username" id="username">
+                                <label for="floatingInput">Tên đăng nhập</label>
+                                <div class="error"></div>
+                            </div>
+                            <div class="form-floating input-control mb-3">
+                                <input name="password" type="password" class="form-control" 
+                                    placeholder="Password" id="password">
+                                <label for="floatingPassword">Mật khẩu</label>
+                                <div class="error"></div>
+                            </div>
+                            <div class="form-floating input-control mb-3">
+                                <input name="email" type="text" class="form-control" 
+                                    placeholder="Email" id="email">
+                                <label for="floatingInput">Email</label>
+                                <div class="error"></div>
+                            </div>
+                            <div class="form-floating input-control mb-3">
+                                <input name="date" type="text" class="form-control" 
+                                    placeholder="Date" id="date">
+                                <label for="floatingInput">Ngày sinh</label>
+                                <div class="error"></div>
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                                <select name="sex" class="form-select form-select-lg" aria-label="Large select example">
+                                    <option value="Nam" selected>Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                  </select> 
+                                <label for="floatingInput">Giới tính</label>
+                            </div>
+
+                            <div class="d-grid mb-3">
+                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" click="validatePassword(this)">Tạo tài khoản</button>
+                            </div>
+                
+                        </form>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold" type="button" onclick="window.location.href='/login'">
+                                Quay lại
+                              </button>
                         </div>
-                        <div class="input-field">
-                            <input name="password" type="password" placeholder="Password" required>
-                            <i class="fa-solid fa-lock"></i>
-                        </div>
-                        <div class="input-field">
-                            <input name="email" type="email" placeholder="Email" required>
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <input name="date" class="date" type="date" required>
-                        <select name="sex" class="select">
-                            <option value="Male" selected>Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        const form = document.getElementById("form");
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        const email = document.getElementById("email");
+        const date = document.getElementById("date");
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            validateInput();
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success');
+        }
+
+        const setSuccess = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputControl.classList.add('success');
+            inputControl.classList.remove('error');
+        }
+
+        function validateUsername(usernameValue) {
+            let isTooLong = usernameValue.length > 15;
+            let regx_uname_1 = /^\S+$/;
+            let regx_uname_2 = /^[^\d].*$/;
+            let regx_uname_3 = /^[\w\d_]*$/; // chuỗi không chứa ký tự nào khác ngoài chữ cái, số, và dấu gạch dưới
+
+            if(usernameValue == ''){
+                setError(username, 'Tên đăng nhập không được để trống');
+                return false;
+            } else if(!regx_uname_1.test(usernameValue)){
+                setError(username, 'Tên đăng nhập không được có khoảng trắng');
+                return false;
+            } else if(!regx_uname_2.test(usernameValue)){
+                setError(username, 'Tên đăng nhập không bắt đầu bằng số');
+                return false;
+            } else if(!regx_uname_3.test(usernameValue)){
+                setError(username, 'Tên đăng nhập không hợp lệ'); 
+                return false;
+            } else if(isTooLong){
+                setError(username, 'Tên đăng nhập không quá 15 kí tự'); 
+                return false;
+            } else {
+                setSuccess(username);
+                return true;
+            }
+        } 
+
+        function validatePassword(passwordValue) {
+            let isTooLong = passwordValue.length > 15;
+            let regx = /^(?=.*\d)(?=.*[a-zA-Z]).{10,}$/.test(passwordValue);
+
+            if(passwordValue == ''){
+                setError(password, 'Mật khẩu không được để trống');
+                return false;
+            } else if(!regx){
+                setError(password, 'Mật khẩu ít nhất 10 ký tự từ 0-9, a-z và A-Z.'); 
+                return false;
+            } else if(isTooLong){
+                setError(password, 'Mật khẩu không quá 15 kí tự'); r
+                return false;
+            } else {
+                setSuccess(password);
+                return true;
+            }
+        }
+        
+        function validateEmail(emailValue) {
+            let regx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailValue);
+
+            if(emailValue == ''){
+                setError(email, 'Email không được để trống');
+                return false;
+            } else if(!regx){
+                setError(email, 'Email không hợp lệ'); 
+                return false;
+            } else {
+                setSuccess(email);
+                return true;
+            }
+        }
+
+        function validateDoB(dateValue) {
+            let regx = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+            let dateParts = dateValue.split('/');
+            let dob = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            let currentDate = new Date();
+            let ageInMilliseconds = currentDate - dob;
+            let age = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
+                
+            if (dateValue == '') {
+                setError(date, 'Ngày sinh không được để trống');
+                return false;
+            } else if (!regx.test(dateValue)) {
+                setError(date, 'Lỗi định dạng dd/mm/yyyy');
+                return false;
+            } else if (age < 12){
+                setError(date, 'Độ tuổi đủ yêu cầu phải trên 12');
+                return false;
+            } else {
+                setSuccess(date);
+                return true;
+            }
+        }
+
+        const validateInput = () => {
+            const usernameValue = username.value.trim();
+            const passwordValue = password.value.trim();
+            const emailValue = email.value.trim();
+            const dateValue = date.value.trim();
+            
+            const isValidUsername = validateUsername(usernameValue);
+            const isValidPassword = validatePassword(passwordValue);
+            const isValidEmail = validateEmail(emailValue);
+            const isValidDoB = validateDoB(dateValue);
+
+            if(isValidUsername && isValidPassword && isValidEmail && isValidDoB) {
+                form.submit();
+            }
+        }
+    </script>
 </body>
 
 </html>

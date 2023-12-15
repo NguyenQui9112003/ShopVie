@@ -1,18 +1,20 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const accountC = require('../controller/account.c');
-const passport = require('passport');
+const passport = require("passport");
+const accountC = require("../controller/account.c");
 
-router.post('/signup', accountC.signup);
+router.post("/signup", accountC.signup);
 
-router.post('/login', passport.authenticate('myStrategies', {
-    failureRedirect: '/'
-}), (req, res) => {
-    if (req.user.Role === 'admin') {
-        res.redirect('/admin');
+router.post(
+  "/login",
+  passport.authenticate("myStrategies", { failureRedirect: "/login",failureFlash: true, }),
+  (req, res) => {
+    if (req.user.Role === "admin") {
+      res.redirect("/admin");
     } else {
-        res.redirect('/user');
+      res.redirect("/user");
     }
-});
+  }
+);
 
 module.exports = router;

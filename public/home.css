@@ -99,7 +99,7 @@ i {
 
 footer {
   background: transparent;
-  color: green;
+  color: blue;
 }
 
 .wrapper-footer {
@@ -110,7 +110,7 @@ footer {
 }
 
 .footer-content {
-  width: 33.3%;
+  width: 50%;
 }
 
 h3 {
@@ -121,73 +121,13 @@ h3 {
 }
 
 .footer-content {
-  width: 190px;
+  width: auto;
   margin: auto;
   padding: 7px;
 }
 
-.footer-content ul {
-  text-align: center;
-}
-
-.list {
-  padding: 0;
-}
-
-.list li {
-  width: auto;
-  text-align: center;
-  list-style-type: none;
-  padding: 7px;
-  position: relative;
-}
-
-.list li ::before {
-  content: '';
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 100%;
-  width: 0;
-  height: 2px;
-  background: orange;
-  transition-duration: .5s;
-}
-
-.list li:hover::before {
-  width: 70px;
-}
-
-.social-icons {
-  text-align: center;
-  padding: 0;
-}
-
-.social-icons li {
-  display: inline-block;
-  text-align: center;
-  padding: 5px;
-}
-
-.social-icons i {
-  color: yellowgreen;
-  font-size: 25px;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  color: blue;
-}
-
-.social-icons i:hover {
-  color: blue;
-}
-
 .bottom-bar {
-  background-color: green;
+  background-color: blue;
   text-align: center;
   padding: 10px 0;
   margin-top: 50px;
@@ -202,9 +142,10 @@ a:hover {
 
 .custom-dropdown .dropdown-menu {
   font-size: 14px;
-  padding: 5px; 
+  padding: 5px;
   min-width: auto;
 }
+
 .custom-dropdown .dropdown-item {
   padding: 10px 10px;
 }
@@ -218,7 +159,18 @@ a:hover {
   color: blue;
 }
 
+.not-found {
+  width: 75%;
+  height: 200px;
+  border-radius: 3px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-
-
-
+.not-found p {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+}

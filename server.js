@@ -3,6 +3,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const flash = require("express-flash");
 const app = express()
 const port = 3000
 const secret = 'mysecretKey';
@@ -23,6 +24,7 @@ app.set('views', './views');
 app.use(cookieParser(secret));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(flash()); // Sử dụng express-flash
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -31,3 +33,6 @@ app.use(bodyParser.json())
 app.use(router)
 
 app.listen(3000, () => console.log(`Server listening on http://127.0.0.1:${port}/`))
+
+
+
