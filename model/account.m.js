@@ -57,9 +57,10 @@ const two = async (tbName, fieldName, value) => {
 };
 
 module.exports = class Account {
-  constructor(un, pw, email, date, sex) {
+  constructor(un, pw, fn, email, date, sex) {
     this.Username = un;
     this.Password = pw;
+    this.Fullname = fn;
     this.Email = email;
     this.Date = date;
     this.Sex = sex;

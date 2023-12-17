@@ -49,6 +49,12 @@
                                 <div class="error"></div>
                             </div>
                             <div class="form-floating input-control mb-3">
+                                <input name="fullname" type="text" class="form-control" 
+                                    placeholder="Fullname" id="fullname">
+                                <label for="floatingInput">Họ và tên</label>
+                                <div class="error"></div>
+                            </div>
+                            <div class="form-floating input-control mb-3">
                                 <input name="email" type="text" class="form-control" 
                                     placeholder="Email" id="email">
                                 <label for="floatingInput">Email</label>
@@ -90,6 +96,7 @@
         const form = document.getElementById("form");
         const username = document.getElementById("username");
         const password = document.getElementById("password");
+        const fullname = document.getElementById("fullname");
         const email = document.getElementById("email");
         const date = document.getElementById("date");
 
@@ -201,18 +208,30 @@
             }
         }
 
+        function validateFname(fnamevalue) {
+            if (fnamevalue == '') {
+                setError(fullname, 'Họ và tên không được để trống');
+                return false;
+            } else {
+                setSuccess(fullname);
+                return true;
+            }
+        }
+
         const validateInput = () => {
             const usernameValue = username.value.trim();
             const passwordValue = password.value.trim();
+            const fullnameValue = fullname.value.trim();
             const emailValue = email.value.trim();
             const dateValue = date.value.trim();
             
             const isValidUsername = validateUsername(usernameValue);
             const isValidPassword = validatePassword(passwordValue);
+            const isValidFname = validateFname(fullnameValue);
             const isValidEmail = validateEmail(emailValue);
             const isValidDoB = validateDoB(dateValue);
 
-            if(isValidUsername && isValidPassword && isValidEmail && isValidDoB) {
+            if(isValidUsername && isValidPassword && isValidFname && isValidEmail && isValidDoB) {
                 form.submit();
             }
         }

@@ -39,6 +39,12 @@
     </div>
 
     <div class="container-fluid">
+        <% if (messages.success) { %>
+            <div class="d-flex justify-content-end alert alert-success" role="alert">
+                <%= messages.success %>
+              </div>
+          <% } %>
+
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/admin" style="font-size: 2em;"><i class="fa-solid fa-house" style="font-size: 1em;"></i>
