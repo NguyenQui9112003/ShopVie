@@ -28,7 +28,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn btn-primary"><a href="/user/logout" style="color: white; text-decoration: none">Xác nhận</a></button>
+                    <button type="submit" class="btn btn-primary"><a href="/user/logout"
+                            style="color: white; text-decoration: none">Xác nhận</a></button>
                 </div>
             </div>
         </div>
@@ -38,122 +39,130 @@
         <% if (messages.success) { %>
             <div class="d-flex justify-content-end alert alert-success" role="alert">
                 <%= messages.success %>
-              </div>
-          <% } %>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/user" style="font-size: 2em;"><i class="fa-solid fa-house" style="font-size: 1em;"></i>
-                    ShopVie
-                </a>
-                <div class="d-flex justify-content-end collapse navbar-collapse">
-                    <form action="/user/search" method="post" class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Tên sản phẩm" name="search">
-                        &nbsp;
-                        <button class="btn btn-outline-primary" style="width: 150px;" type="submit">Tìm kiếm</button>
-                    </form>
-                    <div class="dropdown custom-dropdown pl-3">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a title="Hồ sơ" class="dropdown-item" href="/user/information"><i class="fa-solid fa-user"></i></a>
-                            </li>
-                            <li><a title="Giỏ hàng" class="dropdown-item" href="/user/cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                            </li>
-                            <li><a title="Đăng xuất" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" class="dropdown-item"><i class="fa-solid fa-power-off"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
-        </nav>
-
-        <% if (messages.error) { %>
-
-            <div class="gallery" id="product">
-                <div class="card text-center">
-                    <div class="card-header alert alert-danger" role="alert">
-                        <%= messages.error %>
+            <% } %>
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/user" style="font-size: 2em;"><i class="fa-solid fa-house"
+                                style="font-size: 1em;"></i>
+                            ShopVie
+                        </a>
+                        <div class="d-flex justify-content-end collapse navbar-collapse">
+                            <form action="/user/search" method="post" class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Tên sản phẩm" name="search">
+                                &nbsp;
+                                <button class="btn btn-outline-primary" style="width: 150px;" type="submit">Tìm
+                                    kiếm</button>
+                            </form>
+                            <div class="dropdown custom-dropdown pl-3">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a title="Hồ sơ" class="dropdown-item" href="/user/information"><i
+                                                class="fa-solid fa-user"></i></a>
+                                    </li>
+                                    <li><a title="Giỏ hàng" class="dropdown-item" href="/user/cart"><i
+                                                class="fa-solid fa-cart-shopping"></i></a>
+                                    </li>
+                                    <li>
+                                        <a title="Đăng xuất" class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal"><i class="fa-solid fa-right-to-bracket"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                      <h5 class="card-title" style="color: red;">Sản phẩm không tồn tại hoặc từ khóa tìm kiếm không chính xác</h5>
-                      <p class="card-text">Vui lòng thử lại hoặc </p>
-                      <a href="/user" class="btn btn-primary">Về trang chủ</a>
-                    </div>
-                    <div class="card-footer text-body-secondary" id="current-time">
-                      
-                    </div>
-                  </div>
-                </div>
+                </nav>
 
-          <% } %>
+                <% if (messages.error) { %>
 
-        <div class="gallery" id="product">
-            <% if(products.length> 0) { %>
-                <% products.forEach(product=> { %>
-                    <div class="content">
-                        <img src="<%= product.img %>" alt="">
-                        <h3>
-                            <%= product.name %>
-                        </h3>
-                        <p>
-                            <%= product.content %>
-                        </p>
-                        <h5>
-                            <%= product.price %>
-                        </h5>
-                        <ul>
-                            <% for(let i=0; i < product.star; i++) { %>
-                                <li><i class="fa-solid fa-star checked"></i></li>
-                                <% } %>
-                                    <% for(let i=0; i < 5 - product.star; i++) { %>
-                                        <li><i class="fa-regular fa-star"></i></li>
+                    <div class="gallery" id="product">
+                        <div class="card text-center">
+                            <div class="card-header alert alert-danger" role="alert">
+                                <%= messages.error %>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: red;">Sản phẩm không tồn tại hoặc từ khóa tìm kiếm
+                                    không chính xác</h5>
+                                <p class="card-text">Vui lòng thử lại hoặc </p>
+                                <a href="/user" class="btn btn-primary">Về trang chủ</a>
+                            </div>
+                            <div class="card-footer text-body-secondary" id="current-time">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <% } %>
+
+                        <div class="gallery" id="product">
+                            <% if(products.length> 0) { %>
+                                <% products.forEach(product=> { %>
+                                    <div class="content">
+                                        <img src="<%= product.img %>" alt="">
+                                        <h3>
+                                            <%= product.name %>
+                                        </h3>
+                                        <p>
+                                            <%= product.content %>
+                                        </p>
+                                        <h5>
+                                            <%= product.price %>
+                                        </h5>
+                                        <ul>
+                                            <% for(let i=0; i < product.star; i++) { %>
+                                                <li><i class="fa-solid fa-star checked"></i></li>
+                                                <% } %>
+                                                    <% for(let i=0; i < 5 - product.star; i++) { %>
+                                                        <li><i class="fa-regular fa-star"></i></li>
+                                                        <% } %>
+                                                            <li>
+                                                                <%= product.review %> (reviews)
+                                                            </li>
+                                        </ul>
+                                        <form action="/cart" method="post">
+                                            <button type="submit" class="btn btn-primary" name="cart"
+                                                value="<%= product.content %>">Thêm vào giỏ</button>
+                                        </form>
+                                    </div>
+                                    <% }) %>
                                         <% } %>
-                                            <li>
-                                                <%= product.review %> (reviews)
-                                            </li>
-                        </ul>
-                        <form action="/cart" method="post">
-                            <button type="submit" class="btn btn-primary" name="cart" value="<%= product.content %>">Thêm vào giỏ</button>
-                        </form>
-                    </div>
-                    <% }) %>
-                        <% } %>
-        </div>
+                        </div>
 
-        <footer>
-            <div class="wrapper-footer">
-                <div class="footer-content">
-                    <h3>Thông tin nhóm</h3>
-                    <p>Tên nhóm: G9</p>
-                    <p>Mã nhóm: 10</p>
-                    <p>Lớp: Nhập môn công nghệ phần mềm - 21CLC03</p>
-                </div>
-                <div class="footer-content" style="text-align: start;">
-                    <h3>Các thành viên</h3>
-                    <p>20127293 - Quí Nguyễn Phước Định Quân</p>
-                    <p>21127153 - Nguyễn Huỳnh Phú Quí</p>
-                    <p>21127335 - Sầm Phan Hoài Lâm</p>
-                    <p>21127406 - Trần Đình Quang</p>
-                </div>
-            </div>
-            <div class="bottom-bar">
-                <p>&copy; 2023 ShopVie. Đã đăng ký bản quyền</p>
-            </div>
-        </footer>
+                        <footer>
+                            <div class="wrapper-footer">
+                                <div class="footer-content">
+                                    <h3>Thông tin nhóm</h3>
+                                    <p>Tên nhóm: G9</p>
+                                    <p>Mã nhóm: 10</p>
+                                    <p>Lớp: Nhập môn công nghệ phần mềm - 21CLC03</p>
+                                </div>
+                                <div class="footer-content" style="text-align: start;">
+                                    <h3>Các thành viên</h3>
+                                    <p>20127293 - Quí Nguyễn Phước Định Quân</p>
+                                    <p>21127153 - Nguyễn Huỳnh Phú Quí</p>
+                                    <p>21127335 - Sầm Phan Hoài Lâm</p>
+                                    <p>21127406 - Trần Đình Quang</p>
+                                </div>
+                            </div>
+                            <div class="bottom-bar">
+                                <p>&copy; 2023 ShopVie. Đã đăng ký bản quyền</p>
+                            </div>
+                        </footer>
     </div>
 
     <script>
         function updateCurrentTime() {
-          let currentTimeElement = document.getElementById('current-time');
-          let currentTime = new Date();
-          let hours = currentTime.getHours();
-          let minutes = currentTime.getMinutes();
-          let seconds = currentTime.getSeconds();
-          let timeString = 'Lịch sử tìm kiếm: ' + hours + ' giờ' + ' : ' + minutes + ' phút ' + ' : ' + seconds + ' giây';
-          currentTimeElement.innerHTML = timeString;
+            let currentTimeElement = document.getElementById('current-time');
+            let currentTime = new Date();
+            let hours = currentTime.getHours();
+            let minutes = currentTime.getMinutes();
+            let seconds = currentTime.getSeconds();
+            let timeString = 'Lịch sử tìm kiếm: ' + hours + ' giờ' + ' : ' + minutes + ' phút ' + ' : ' + seconds + ' giây';
+            currentTimeElement.innerHTML = timeString;
         }
         updateCurrentTime();
     </script>

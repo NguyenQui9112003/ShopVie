@@ -21,7 +21,6 @@ const signup = async (req, res, next) => {
       req.flash('error', 'Email đã tồn tại. Vui lòng chọn email khác!');
       return res.redirect('/signup');
     }
-
     bcrypt.hash(pw, saltRounds, async function (err, hash) {
       if (err) {
         return next(err);
