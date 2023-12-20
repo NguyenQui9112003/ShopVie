@@ -19,7 +19,7 @@ const addProduct = async (req, res, next) => {
       req.body.img,
       req.body.name,
       req.body.content,
-      req.body.price,
+      parseInt(req.body.price),
       parseInt(req.body.star),
       parseInt(req.body.review)
     );
@@ -44,7 +44,7 @@ const updateProduct = async (req, res, next) => {
       req.body.img,
       req.body.name,
       req.body.content,
-      req.body.price,
+      parseInt(req.body.price),
       parseInt(req.body.star),
       parseInt(req.body.review),
       req.body.nameItem
