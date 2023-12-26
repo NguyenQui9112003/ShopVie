@@ -22,7 +22,6 @@ INSERT INTO "Products" VALUES('https://cholimexfood.com.vn/wp-content/uploads/20
 --New product
 INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2016/04/Nuoc-Giai-Khat-Coca-Cola-Lon-330ml.jpg', 'Nước ngọt', 'Nước ngọt Coca Cola', 8, 4, 30);
 INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2017/03/171612119367981.jpg', 'Kẹo dẻo', 'Kẹo Dẻo Chupa Chups Cool Cola Gói 90g', 19, 4, 30);
-INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2016/04/Nuoc-Giai-Khat-Pepsi-Lon-330ml.jpg', 'Nước ngọt', 'Nước ngọt Pepsi', 8, 4, 30);
 INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2017/01/K%E1%BA%B9o-D%E1%BA%BBo-Goldbears-Haribo-G%C3%B3i-80g.jpg', 'Keo dẻo', 'Kẹo Dẻo Goldbears Haribo Gói 80g', 24, 4, 30);
 INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2017/03/B%C3%A1nh-Milano-V%E1%BB%8B-B%E1%BA%A1c-H%C3%A0-S%C3%B4-C%C3%B4-La-Pepperidge-Farm-G%C3%B3i-198g1.jpg', 'Bánh mỳ', 'Bánh Milano Vị Bạc Hà Sô Cô La Pepperidge Farm Gói 198g', 85, 4, 30);
 INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2020/11/B%E1%BB%99t-M%C3%AC-L%C3%A0m-B%C3%A1nh-M%C3%AC-Beksul-Th%E1%BB%B1c-Ph%E1%BA%A9m-C%E1%BA%A7u-Tre-G%C3%B3i-1kg.png', 'Bột mì', 'Bột Mì Làm Bánh Mì Beksul Thực Phẩm Cầu Tre Gói 1kg', 40, 5, 29);
@@ -40,7 +39,7 @@ INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2020/04/M%E1
 INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2019/09/M%E1%BB%A9t-Anh-%C4%90%C3%A0o-Bonne-Maman-h%E1%BB%99p-370g.png', 'Mứt', 'Mứt Anh Đào Bonne Maman Hộp 370g', 145, 4, 24);
 INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2020/08/M%E1%BB%A9t-B%C3%AD-Vi%E1%BB%87t-San-H%E1%BB%99p-150g.png', 'Mứt', 'Mứt Bí Việt San Hộp 150g', 26, 4, 26);
 INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2016/06/M%E1%BB%A9t-b%C6%B0%E1%BB%9Fi-v%C3%A0-qu%C3%BDt-Le-Fruit-l%E1%BB%8D-225g.jpg', 'Mứt', 'Mứt Bưởi Và Quýt Le Fruit Lọ 225g', 48, 4, 26);
-INSERT INTO "Protudts" VALUES('https://csfood.vn/wp-content/uploads/2018/01/M%E1%BB%A9t-cam-every-home-l%E1%BB%8D-135g.jpg', 'Mứt', 'Mứt Cam Every Home Lọ 135g', 28, 4, 7);
+INSERT INTO "Products" VALUES('https://csfood.vn/wp-content/uploads/2018/01/M%E1%BB%A9t-cam-every-home-l%E1%BB%8D-135g.jpg', 'Mứt', 'Mứt Cam Every Home Lọ 135g', 28, 4, 7);
 
 -- ----------------------------
 -- Table structure for Products
@@ -51,7 +50,7 @@ CREATE TABLE "accountDb"(
   "Password" varchar(100) NOT NULL,
   "Fullname" varchar(100) NOT NULL,
   "Email" text NOT NULL,
-  "Date" date NOT NULL,
+  "Date" text NOT NULL,
   "Sex" text NOT NULL,
   "Role" text
 );

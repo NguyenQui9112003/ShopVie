@@ -1,8 +1,38 @@
 const userM = require("../model/user.m");
 
-const userInfo = (req, res) => {
-  res.render("info");
-};
+const userInfo = async (req, res) => {
+  try {
+    const data = await userM.showInfo(req.username);
+    res.render("infoPage", { info: data });
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+const updateUserInfo = async (req, res) => {
+  try {
+    const username = req.username;
+    const email = req.email;
+    const { fullname, date, sex } = req.body;
+
+    const existingEmail = await userM.getAllEmailsExceptUsername(username);
+
+    if (existingEmail.includes(req.body.email)) {
+      req.flash('error', 'Email đã tồn tại, vui lòng chọn email khác!');
+      res.redirect('/user/information');
+    } else {
+      await userM.updateUserInfo(username, fullname, email, date, sex);
+      req.flash('success', 'Thay đổi thành công!');
+      res.redirect('/user/information');
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
 
 const userPage = async (req, res) => {
   const data = await userM.showProducts();
@@ -64,11 +94,40 @@ const removeFromCart = async (req, res, next) => {
   }
 }
 
+const searchProductForCart = async (search) => {
+  let con = null;
+  try {
+    con = await db.connect();
+    const products = await con.query('SELECT * FROM "Products" WHERE content = $1', [search]);
+    return products;
+  } catch (error) {
+    throw error;
+  } finally {
+    if (con) con.done();
+  }
+};
+
+const checkDuplicate = async (search) => {
+  let con = null;
+  try {
+    con = await db.connect();
+    const products = await con.query('SELECT * FROM "Cart" WHERE content = $1', [search]);
+    return products;
+  } catch (error) {
+    throw error;
+  } finally {
+    if (con) con.done();
+  }
+};
+
 module.exports = {
   userPage,
   userInfo,
+  updateUserInfo,
   searchProductUser,
   showCart,
+  searchProductForCart,
   addToCart,
-  removeFromCart
+  removeFromCart,
+  checkDuplicate,
 };

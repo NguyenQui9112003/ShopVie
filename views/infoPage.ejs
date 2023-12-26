@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        .bottom-bar {
+            background-color: blue;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .bottom-bar p {
+            color: white;
+            margin: 0;
+            font-size: 16px;
+            padding: 7px;
+        }
+
+
+        .input-control.success input {
+            border-color: green;
+          }
+          
+        .input-control.error input {
+            border-color: red;
+        }
+          
+        .input-control .error {
+            font-size: 1em;
+            height: 1.5em;
+            color: red;
+          }
+    </style>
+</head>
+
+<body>
+    <% if (messages.success) { %>
+        <div class="d-flex justify-content-end alert alert-success" role="alert">
+            <%= messages.success %>
+          </div>
+      <% } %>
+
+    <% if (messages.error) { %>
+        <div class="d-flex justify-content-end alert alert-warning" role="alert">
+            <%= messages.error %>
+          </div>
+      <% } %>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/user" style="font-size: 2em; color:blue"><i class="fa-solid fa-house"
+                        style="font-size: 1em; color:blue"></i>
+                    ShopVie
+                </a>
+            </div>
+        </nav>
+
+        <div class="row pt-3">
+            <div class="col-4">
+                <div class="mx-auto d-flex justify-content-center">
+                    <h3><strong>Hồ sơ người dùng</strong></h3>
+                </div>
+
+            </div>
+            <div class="col-8">
+                <% if(info.length> 0) { %>
+                    <% info.forEach(i=> { %>
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label" style="font-weight: bold;">Tên đăng nhập</label>
+                            <div class="col-sm-9">
+                                <div type="text" readonly class="form-control-plaintext" name="username">
+                                    <%= i.Username %>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="/user/update" method="post" id="form">
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label" style="font-weight: bold;">Họ và tên</label>
+                                <div class="col-sm-9 input-control">
+                                    <input class="form-control" name="fullname" value="<%= i.Fullname %>" id="fullname">
+                                    <div class="error"></div>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <label class="col-sm-3 col-form-label" style="font-weight: bold;">Giới tính</label>
+                                <div class="col-sm-9 input-control">
+                                    <select name="sex" class="form-control form-select">
+                                        <option value="Nam" <%=i.Sex==='Nam' ? 'selected' : '' %>>Nam</option>
+                                        <option value="Nữ" <%=i.Sex==='Nữ' ? 'selected' : '' %>>Nữ</option>
+                                        <option value="Khác" <%=i.Sex==='Khác' ? 'selected' : '' %>>Khác</option>
+                                    </select>
+                                    <div class="error"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-3 col-form-label" style="font-weight: bold;">Ngày sinh</label>
+                                <div class="col-sm-9 input-control">
+                                    <input class="form-control" name="date" value="<%= i.Date %>" id="date">
+                                    <div class="error"></div>
+                                </div>
+                            </div>
+
+                            <div class="row input-control">
+                                <label class="col-sm-3 col-form-label" style="font-weight: bold;">Email</label>
+                                <div class="col-sm-9 input-control">
+                                    <input class="form-control" name="email" value="<%= i.Email %>" id="email">
+                                    <div class="error"></div>
+                                </div>
+                            </div>
+
+                            <div class="row d-flex justify-content-end" style="position: relative; right:15px">
+                                <button class="btn btn-primary mx-2" type="submit">Thay đổi</button>
+                                <button type="button" class="btn btn-danger" onclick="window.location.href='/user'">Quay lại</button>
+                            </div>
+                        </form>
+                        <% }) %>
+                            <% } %>
+            </div>
+        </div>
+
+        <footer class="d-flex justify-content-center">
+            <div class="bottom-bar">
+                <p>&copy; 2023 ShopVie. Đã đăng ký bản quyền</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById("form");
+        const fullname = document.getElementById("fullname");
+        const email = document.getElementById("email");
+        const date = document.getElementById("date");
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            validateInput();
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success');
+        }
+
+        const setSuccess = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputControl.classList.add('success');
+            inputControl.classList.remove('error');
+        }
+        
+        function validateEmail(emailValue) {
+            let regx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailValue);
+
+            if(emailValue == ''){
+                setError(email, 'Email không được để trống');
+                return false;
+            } else if(!regx){
+                setError(email, 'Email không hợp lệ'); 
+                return false;
+            } else {
+                setSuccess(email);
+                return true;
+            }
+        }
+
+        function validateDoB(dateValue) {
+            let regx = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+            let dateParts = dateValue.split('/');
+            let dob = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            let currentDate = new Date();
+            let ageInMilliseconds = currentDate - dob;
+            let age = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
+                
+            if (dateValue == '') {
+                setError(date, 'Ngày sinh không được để trống');
+                return false;
+            } else if (!regx.test(dateValue)) {
+                setError(date, 'Lỗi định dạng dd/mm/yyyy');
+                return false;
+            } else if (age < 12){
+                setError(date, 'Độ tuổi đủ yêu cầu phải trên 12');
+                return false;
+            } else {
+                setSuccess(date);
+                return true;
+            }
+        }
+
+        function validateFname(fnamevalue) {
+            if (fnamevalue == '') {
+                setError(fullname, 'Họ và tên không được để trống');
+                return false;
+            } else {
+                setSuccess(fullname);
+                return true;
+            }
+        }
+
+        const validateInput = () => {
+            const fullnameValue = fullname.value.trim();
+            const emailValue = email.value.trim();
+            const dateValue = date.value.trim();
+            
+            const isValidFname = validateFname(fullnameValue);
+            const isValidEmail = validateEmail(emailValue);
+            const isValidDoB = validateDoB(dateValue);
+
+            if(isValidFname && isValidEmail && isValidDoB) {
+                form.submit();
+            }
+        }
+    </script>
+</body>
+
+</html>

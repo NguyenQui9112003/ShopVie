@@ -4,6 +4,8 @@ const userController = require("../controller/user.c");
 
 router.use((req, res, next) => {
   if (req.isAuthenticated()) {
+    req.username = req.user.Username; 
+    req.email = req.user.Email; 
     return next();
   }
   res.redirect("/");
@@ -11,7 +13,8 @@ router.use((req, res, next) => {
 
 router.get("/", userController.userPage); // User homepage
 router.get("/information", userController.userInfo); // User information page
-router.post("/search", userController.searchProductUser); // Searching on admin page
+router.post("/update", userController.updateUserInfo); // Update user infomation
+router.post("/search", userController.searchProductUser); // Search
 router.get("/cart", userController.showCart) // Show cart
 router.post("/addtocart", userController.addToCart)
 router.post('/removecart', userController.removeFromCart)
