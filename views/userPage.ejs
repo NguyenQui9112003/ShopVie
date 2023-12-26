@@ -76,7 +76,6 @@
                 </nav>
 
                 <% if (messages.error) { %>
-
                     <div class="gallery" id="product">
                         <div class="card text-center">
                             <div class="card-header alert alert-danger" role="alert">
@@ -88,80 +87,75 @@
                                 <p class="card-text">Vui lòng thử lại hoặc </p>
                                 <a href="/user" class="btn btn-primary">Về trang chủ</a>
                             </div>
-                            <div class="card-footer text-body-secondary" id="current-time">
-
-                            </div>
+                            <div class="card-footer text-body-secondary" id="current-time"></div>
                         </div>
                     </div>
-
                     <% } %>
-                    
-                    <% if (messages.added) { %>
-                        <div class="d-flex justify-content-end alert alert-success" role="alert">
-                            <%= messages.added %>
-                            </div>
-                        <% } %>
-                
-                        <% if (messages.failed) { %>
+                        <% if (messages.added) { %>
                             <div class="d-flex justify-content-end alert alert-success" role="alert">
-                                <%= messages.failed %>
-                                </div>
+                                <%= messages.added %>
+                            </div>
                             <% } %>
-
-                        <div class="gallery" id="product">
-                            <% if(products.length> 0) { %>
-                                <% products.forEach(product=> { %>
-                                    <div class="content">
-                                        <img src="<%= product.img %>" alt="">
-                                        <h3>
-                                            <%= product.name %>
-                                        </h3>
-                                        <p>
-                                            <%= product.content %>
-                                        </p>
-                                        <h5>
-                                            <%= product.price %>
-                                        </h5>
-                                        <ul>
-                                            <% for(let i=0; i < product.star; i++) { %>
-                                                <li><i class="fa-solid fa-star checked"></i></li>
-                                                <% } %>
-                                                    <% for(let i=0; i < 5 - product.star; i++) { %>
-                                                        <li><i class="fa-regular fa-star"></i></li>
-                                                        <% } %>
-                                                            <li>
-                                                                <%= product.review %> (reviews)
-                                                            </li>
-                                        </ul>
-                                        <form action="/user/addtocart" method="post">
-                                            <button type="submit" class="btn btn-primary" name="cart" value="<%= product.content %>">Thêm vào giỏ</button>
-                                        </form>
+                                <% if (messages.failed) { %>
+                                    <div class="d-flex justify-content-end alert alert-success" role="alert">
+                                        <%= messages.failed %>
                                     </div>
-                                    <% }) %>
-                                        <% } %>
+                                    <% } %>
 
-                        </div>
+                                        <div class="gallery" id="product">
+                                            <% if(products.length> 0) { %>
+                                                <% products.forEach(product=> { %>
+                                                    <div class="content">
+                                                        <img src="<%= product.img %>" alt="">
+                                                        <h3>
+                                                            <%= product.name %>
+                                                        </h3>
+                                                        <p>
+                                                            <%= product.content %>
+                                                        </p>
+                                                        <h5>
+                                                            <%= product.price %>.000 VND
+                                                        </h5>
+                                                        <ul>
+                                                            <% for(let i=0; i < product.star; i++) { %>
+                                                                <li><i class="fa-solid fa-star checked"></i></li>
+                                                                <% } %>
+                                                                    <% for(let i=0; i < 5 - product.star; i++) { %>
+                                                                        <li><i class="fa-regular fa-star"></i></li>
+                                                                        <% } %>
+                                                                            <li>
+                                                                                <%= product.review %> (reviews)
+                                                                            </li>
+                                                        </ul>
+                                                        <form action="/user/addtocart" method="post">
+                                                            <button type="submit" class="btn btn-primary" name="cart"
+                                                                value="<%= product.content %>">Thêm vào giỏ</button>
+                                                        </form>
+                                                    </div>
+                                                    <% }) %>
+                                                        <% } %>
 
-                        <footer>
-                            <div class="wrapper-footer">
-                                <div class="footer-content">
-                                    <h3>Thông tin nhóm</h3>
-                                    <p>Tên nhóm: G9</p>
-                                    <p>Mã nhóm: 10</p>
-                                    <p>Lớp: Nhập môn công nghệ phần mềm - 21CLC03</p>
-                                </div>
-                                <div class="footer-content" style="text-align: start;">
-                                    <h3>Các thành viên</h3>
-                                    <p>20127293 - Quí Nguyễn Phước Định Quân</p>
-                                    <p>21127153 - Nguyễn Huỳnh Phú Quí</p>
-                                    <p>21127335 - Sầm Phan Hoài Lâm</p>
-                                    <p>21127406 - Trần Đình Quang</p>
-                                </div>
-                            </div>
-                            <div class="bottom-bar">
-                                <p>&copy; 2023 ShopVie. Đã đăng ký bản quyền</p>
-                            </div>
-                        </footer>
+                                        </div>
+                                        <footer>
+                                            <div class="wrapper-footer">
+                                                <div class="footer-content">
+                                                    <h3>Thông tin nhóm</h3>
+                                                    <p>Tên nhóm: G9</p>
+                                                    <p>Mã nhóm: 10</p>
+                                                    <p>Lớp: Nhập môn công nghệ phần mềm - 21CLC03</p>
+                                                </div>
+                                                <div class="footer-content" style="text-align: start;">
+                                                    <h3>Các thành viên</h3>
+                                                    <p>20127293 - Quí Nguyễn Phước Định Quân</p>
+                                                    <p>21127153 - Nguyễn Huỳnh Phú Quí</p>
+                                                    <p>21127335 - Sầm Phan Hoài Lâm</p>
+                                                    <p>21127406 - Trần Đình Quang</p>
+                                                </div>
+                                            </div>
+                                            <div class="bottom-bar">
+                                                <p>&copy; 2023 ShopVie. Đã đăng ký bản quyền</p>
+                                            </div>
+                                        </footer>
     </div>
 
     <script>
