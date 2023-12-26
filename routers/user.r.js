@@ -15,6 +15,9 @@ router.get("/", userController.userPage); // User homepage
 router.get("/information", userController.userInfo); // User information page
 router.post("/update", userController.updateUserInfo); // Update user infomation
 router.post("/search", userController.searchProductUser); // Search
+router.get("/cart", userController.showCart) // Show cart
+router.post("/addtocart", userController.addToCart)
+router.post('/removecart', userController.removeFromCart)
 
 router.get("/logout", (req, res) => {
   req.logout((err) => {

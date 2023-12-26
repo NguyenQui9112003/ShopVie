@@ -11,7 +11,6 @@ router.use((req, res, next) => {
 
 router.get("/", adminController.adminPage); // Admin homepage
 router.get("/add", adminController.add); // Add product page
-
 router.post("/update", adminController.update); // Update product page
 router.post("/delete", adminController.deleteProduct); // Deleting product
 router.post("/adding", adminController.addProduct); // Adding product

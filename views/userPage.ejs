@@ -13,8 +13,6 @@
 </head>
 
 <body>
-
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -97,6 +95,18 @@
                     </div>
 
                     <% } %>
+                    
+                    <% if (messages.added) { %>
+                        <div class="d-flex justify-content-end alert alert-success" role="alert">
+                            <%= messages.added %>
+                            </div>
+                        <% } %>
+                
+                        <% if (messages.failed) { %>
+                            <div class="d-flex justify-content-end alert alert-success" role="alert">
+                                <%= messages.failed %>
+                                </div>
+                            <% } %>
 
                         <div class="gallery" id="product">
                             <% if(products.length> 0) { %>
@@ -123,13 +133,13 @@
                                                                 <%= product.review %> (reviews)
                                                             </li>
                                         </ul>
-                                        <form action="/cart" method="post">
-                                            <button type="submit" class="btn btn-primary" name="cart"
-                                                value="<%= product.content %>">Thêm vào giỏ</button>
+                                        <form action="/user/addtocart" method="post">
+                                            <button type="submit" class="btn btn-primary" name="cart" value="<%= product.content %>">Thêm vào giỏ</button>
                                         </form>
                                     </div>
                                     <% }) %>
                                         <% } %>
+
                         </div>
 
                         <footer>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="cartStyle.css">
+    <link rel="stylesheet" href="/cart.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
   <div class="container">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
-              <a class="navbar-brand" href="/"><i class="fa-solid fa-house"></i>
+              <a class="navbar-brand" href="/user"><i class="fa-solid fa-house"></i>
                   ShopVie
               </a>
           </div>
@@ -27,59 +27,34 @@
             <th>Quantity</th>
             <th>Subtotal</th>
           </tr>
-          <tr>
-            <td>
-              <div class="cart-info">
-                <div class="card"><img src="https://product.hstatic.net/200000356473/product/1_819f7f1a1cc64a6587394c941e22d0aa_1024x1024.jpg" alt="Product 1"></div>
-                <div>
-                  <p>Nước tương</p>
-                  <small class="price">Price: 60.000 VND</small>
+
+          <% if(products.length > 0) { %>
+            <% products.forEach(product => { %>
+            <tr>
+              <td>
+                <div class="cart-info">
+                  <div class="card"><img src="<%= product.img %>" alt="Product 1"></div>
+                  <div>
+                    <p><%= product.content %></p>
+                    <small class="price">Price: <%= product.price %>.000 VND</small>
+                  </div>
                 </div>
-              </div>
-
-            </td>
-            <td><input type="number" value="1" id="productNum"></td>
-            <td>
-              <span class="subtotal">60.000 VND</span>
-              <br><button class="removeBtn" onmousedown="removeProduct(this)">Remove</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <div class="cart-info">
-                <div class="card"><img src="https://minhcaumart.vn/media/com_eshop/products/8936017361303.webp" alt="Product 1"></div>
-                <div>
-                  <p>Nước mắm</p>
-                  <small class="price">Price: 70.000 VND</small>
-                </div>
-              </div>
-
-            </td>
-            <td><input type="number" value="1" id="productNum"></td>
-            <td>
-              <span class="subtotal">70.000 VND</span>
-              <br><button class="removeBtn" onmousedown="removeProduct(this)">Remove</button>
-            </td>
-          </tr>
+              </td>
+              <td><input type="number" value="1" id="productNum"></td>
+              <td>
+                <span class="subtotal"><%= product.price %>.000 VND</span><br>
+                <form action="/user/removecart" method="post">
+                  <button type="submit" class="removeBtn" name="content" value="<%= product.content %>">Remove</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        <% } %>
 
         </table>
 
-        <div class="total-price" id="totalPriceDiv">
-          <table>
-            <tr>
-              <td>Subtotal</td>
-              <td id="subtotal">0 VND</td>
-            </tr>
-            <tr>
-              <td>Tax</td>
-              <td>13.000 VND</td>
-            </tr>
-            <tr>
-              <td>Total</td>
-              <td id="total">0 VND</td>
-            </tr>
-          </table>
+        <div class="total-price col-2 offset-10" id="totalPriceDiv">
+          <button type="button" class="btn btn-info">Buy now</button>
         </div>
 
       </div>
@@ -117,7 +92,5 @@
           </div>
       </footer>
   </div>
-
-  <script src="cart.js"></script>
 </body>
 </html>
