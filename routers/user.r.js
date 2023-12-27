@@ -19,7 +19,7 @@ router.get("/cart", userController.showCart) // Show cart
 router.post("/addtocart", userController.addToCart)
 router.post('/removecart', userController.removeFromCart)
 
-router.get("/logout", (req, res) => {
+router.get("/logout", userController.deleteCart, (req, res) => {
   req.logout((err) => {
     if (err) {
       throw err;

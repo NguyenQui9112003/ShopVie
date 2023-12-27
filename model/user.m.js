@@ -50,9 +50,10 @@ const searchProduct = async (search) => {
   try {
     con = await db.connect();
     const products = await con.query(
-      'SELECT * FROM "Products" WHERE name = $1',
+      `SELECT * FROM "Products" WHERE "Products".name ILIKE '%' || $1 || '%'`,
       [search]
     );
+    console.log(products)
     return products;
   } catch (error) {
     throw error;
@@ -144,6 +145,19 @@ const removeFromCart = async (content) => {
   }
 }
 
+const deleteCart = async () => {
+  let con = null;
+  try{
+    con = await db.connect()
+    await con.query('DELETE FROM "Cart"');
+  } catch (error) {
+    throw error;
+  } finally {
+    if(con)
+      con.done()
+  }
+}
+
 module.exports = {
   showProducts,
   showInfo,
@@ -154,5 +168,6 @@ module.exports = {
   searchProductForCart,
   addToCart,
   checkDuplicate,
-  removeFromCart
+  removeFromCart,
+  deleteCart
 };

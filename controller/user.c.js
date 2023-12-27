@@ -94,31 +94,14 @@ const removeFromCart = async (req, res, next) => {
   }
 }
 
-const searchProductForCart = async (search) => {
-  let con = null;
-  try {
-    con = await db.connect();
-    const products = await con.query('SELECT * FROM "Products" WHERE content = $1', [search]);
-    return products;
-  } catch (error) {
-    throw error;
-  } finally {
-    if (con) con.done();
+const deleteCart = async (req, res, next) => {
+  try{
+    await userM.deleteCart()
+    next()
+  } catch (error){
+    next(error)
   }
-};
-
-const checkDuplicate = async (search) => {
-  let con = null;
-  try {
-    con = await db.connect();
-    const products = await con.query('SELECT * FROM "Cart" WHERE content = $1', [search]);
-    return products;
-  } catch (error) {
-    throw error;
-  } finally {
-    if (con) con.done();
-  }
-};
+}
 
 module.exports = {
   userPage,
@@ -126,8 +109,7 @@ module.exports = {
   updateUserInfo,
   searchProductUser,
   showCart,
-  searchProductForCart,
   addToCart,
   removeFromCart,
-  checkDuplicate,
+  deleteCart
 };
