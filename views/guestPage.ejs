@@ -18,7 +18,8 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/" style="font-size: 2em;"><i class="fa-solid fa-house" style="font-size: 1em;"></i>
+                <a class="navbar-brand" href="/" style="font-size: 2em;"><i class="fa-solid fa-house"
+                        style="font-size: 1em;"></i>
                     ShopVie
                 </a>
                 <div class="d-flex justify-content-end collapse navbar-collapse">
@@ -33,7 +34,8 @@
                             <i class="fa-solid fa-gear"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a title="Đăng nhập" class="dropdown-item" href="/login"><i class="fa-solid fa-power-off"></i></a></li>
+                            <li><a title="Đăng nhập" class="dropdown-item" href="/login"><i
+                                        class="fa-solid fa-power-off"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -48,105 +50,107 @@
                         <%= messages.error %>
                     </div>
                     <div class="card-body">
-                      <h5 class="card-title" style="color: red;">Sản phẩm không tồn tại hoặc từ khóa tìm kiếm không chính xác</h5>
-                      <p class="card-text">Vui lòng thử lại hoặc </p>
-                      <a href="/" class="btn btn-primary">Về trang chủ</a>
+                        <h5 class="card-title" style="color: red;">Sản phẩm không tồn tại hoặc từ khóa tìm kiếm không
+                            chính xác</h5>
+                        <p class="card-text">Vui lòng thử lại hoặc </p>
+                        <a href="/" class="btn btn-primary">Về trang chủ</a>
                     </div>
                     <div class="card-footer text-body-secondary" id="current-time">
-                      
+
                     </div>
-                  </div>
                 </div>
+            </div>
 
-          <% } %>
+            <% } %>
 
-        <div class="gallery" id="product">
-            <% if(products.length> 0) { %>
-                <% products.forEach(product=> { %>
-                    <div class="content">
-                        <img src="<%= product.img %>" alt="">
-                        <h3>
-                            <%= product.name %>
-                        </h3>
-                        <p>
-                            <%= product.content %>
-                        </p>
-                        <h5>
-                            <%= product.price %>.000 VND
-                        </h5>
-                        <ul>
-                            <% for(let i=0; i < product.star; i++) { %>
-                                <li><i class="fa-solid fa-star checked"></i></li>
-                                <% } %>
-                                    <% for(let i=0; i < 5 - product.star; i++) { %>
-                                        <li><i class="fa-regular fa-star"></i></li>
+                <div class="gallery" id="product">
+                    <% if(products.length> 0) { %>
+                        <% products.forEach(product=> { %>
+                            <div class="content">
+                                <img src="<%= product.img %>" alt="">
+                                <h3>
+                                    <%= product.name %>
+                                </h3>
+                                <p>
+                                    <%= product.content %>
+                                </p>
+                                <h5>
+                                    <%= product.price %>.000 VND
+                                </h5>
+                                <ul>
+                                    <% for(let i=0; i < product.star; i++) { %>
+                                        <li><i class="fa-solid fa-star checked"></i></li>
                                         <% } %>
-                                            <li>
-                                                <%= product.review %> (reviews)
-                                            </li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" name="cart" value="<%= product.content %>">
-                            Thêm vào giỏ
-                        </button>
-                    </div>
-                    <% }) %>
-                        <% } %>
-        </div>
+                                            <% for(let i=0; i < 5 - product.star; i++) { %>
+                                                <li><i class="fa-regular fa-star"></i></li>
+                                                <% } %>
+                                                    <li>
+                                                        <%= product.review %> (reviews)
+                                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" name="cart" value="<%= product.content %>">
+                                    Thêm vào giỏ
+                                </button>
+                            </div>
+                            <% }) %>
+                                <% } %>
+                </div>
 
-        <footer>
-            <div class="wrapper-footer">
-                <div class="footer-content">
-                    <h3>Thông tin nhóm</h3>
-                    <p>Tên nhóm: G9</p>
-                    <p>Mã nhóm: 10</p>
-                    <p>Lớp: Nhập môn công nghệ phần mềm - 21CLC03</p>
-                </div>
-                <div class="footer-content" style="text-align: start;">
-                    <h3>Các thành viên</h3>
-                    <p>20127293 - Quí Nguyễn Phước Định Quân</p>
-                    <p>21127153 - Nguyễn Huỳnh Phú Quí</p>
-                    <p>21127335 - Sầm Phan Hoài Lâm</p>
-                    <p>21127406 - Trần Đình Quang</p>
-                </div>
-            </div>
-            <div class="bottom-bar">
-                <p>&copy; 2023 ShopVie. Đã đăng ký bản quyền</p>
-            </div>
-        </footer>
+                <footer>
+                    <div class="wrapper-footer">
+                        <div class="footer-content">
+                            <h3>Thông tin nhóm</h3>
+                            <p>Tên nhóm: G9</p>
+                            <p>Mã nhóm: 10</p>
+                            <p>Lớp: Nhập môn công nghệ phần mềm - 21CLC03</p>
+                        </div>
+                        <div class="footer-content" style="text-align: start;">
+                            <h3>Các thành viên</h3>
+                            <p>20127293 - Quí Nguyễn Phước Định Quân</p>
+                            <p>21127153 - Nguyễn Huỳnh Phú Quí</p>
+                            <p>21127335 - Sầm Phan Hoài Lâm</p>
+                            <p>21127406 - Trần Đình Quang</p>
+                        </div>
+                    </div>
+                    <div class="bottom-bar">
+                        <p>&copy; 2023 ShopVie. Đã đăng ký bản quyền</p>
+                    </div>
+                </footer>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nhắc nhở</h1>
-                        <button style="color: red;" type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"><i class="fa-solid fa-x"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        Bạn phải đăng nhập trước khi tiến hành thao tác tiếp theo.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
-                        <form action="/login" method="get">
-                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                        </form>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Nhắc nhở</h1>
+                                <button style="color: red;" type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"><i class="fa-solid fa-x"></i></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn phải đăng nhập trước khi tiến hành thao tác tiếp theo.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
+                                <form action="/login" method="get">
+                                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
 
     <script>
         function updateCurrentTime() {
-          let currentTimeElement = document.getElementById('current-time');
-          let currentTime = new Date();
-          let hours = currentTime.getHours();
-          let minutes = currentTime.getMinutes();
-          let seconds = currentTime.getSeconds();
-          let timeString = 'Lịch sử tìm kiếm: ' + hours + ' giờ' + ' : ' + minutes + ' phút ' + ' : ' + seconds + ' giây';
-          currentTimeElement.innerHTML = timeString;
+            let currentTimeElement = document.getElementById('current-time');
+            let currentTime = new Date();
+            let hours = currentTime.getHours();
+            let minutes = currentTime.getMinutes();
+            let seconds = currentTime.getSeconds();
+            let timeString = 'Lịch sử tìm kiếm: ' + hours + ' giờ' + ' : ' + minutes + ' phút ' + ' : ' + seconds + ' giây';
+            currentTimeElement.innerHTML = timeString;
         }
         updateCurrentTime();
     </script>

@@ -1,96 +1,82 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="/cart.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-    <title>Shopping Cart</title>
+
+<head>
+  <link rel="stylesheet" href="/cart.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <title>Shopping Cart</title>
+  <style>
+    .move-left {
+      position: relative;
+      left: -55px;
+    }
+
+    #cartTable th {
+      text-align: center;
+    }
+
+    .pro-content {
+      position: relative;
+      right: -15px;
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-              <a class="navbar-brand" href="/user"><i class="fa-solid fa-house"></i>
-                  ShopVie
-              </a>
-          </div>
-      </nav>
-
-      <!--cart-->
-      <div class="small-container cart-page">
-
-        <table id="cartTable">
-          <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-          </tr>
-
-          <% if(products.length > 0) { %>
-            <% products.forEach(product => { %>
-            <tr>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/user" style="font-size: 2em;"><i class="fa-solid fa-house"
+            style="font-size: 1em;"></i>
+          ShopVie
+        </a>
+      </div>
+    </nav>
+    <div class="small-container cart-page">
+      <table class="table-bordered " id="cartTable">
+        <tr>
+          <th scope="col">Products</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Subtotal</th>
+        </tr>
+        <% if(products.length> 0) { %>
+          <% products.forEach(product=> { %>
+            <tr style="text-align: center">
               <td>
                 <div class="cart-info">
-                  <div class="card"><img src="<%= product.img %>" alt="Product 1"></div>
+                  <div class="card"><img src="<%= product.img %>"></div>
                   <div>
-                    <p><%= product.content %></p>
-                    <small class="price">Price: <%= product.price %>.000 VND</small>
+                    <p class="pro-content">
+                      <%= product.content %>
+                    </p>
+                    <p class="price">Price: <%= product.price %>.000 VND</p>
                   </div>
                 </div>
               </td>
-              <td><input type="number" value="1" id="productNum"></td>
-              <td>
-                <span class="subtotal"><%= product.price %>.000 VND</span><br>
+              <td><input type="number" value="1" min="1" max="99" style="width: 50px; height:50px" id="productNum"></td>
+              <td style="text-align: center">
+                <span>
+                  <%= product.price %>.000 VND
+                </span>
                 <form action="/user/removecart" method="post">
-                  <button type="submit" class="removeBtn" name="content" value="<%= product.content %>">Remove</button>
+                  <button type="submit" class="removeBtn mt-1" name="content"
+                    value="<%= product.content %>">Remove</button>
                 </form>
               </td>
             </tr>
-          <% }) %>
-        <% } %>
-
-        </table>
-
-        <div class="total-price col-2 offset-10" id="totalPriceDiv">
-          <button type="button" class="btn btn-info">Buy now</button>
-        </div>
-
+            <% }) %>
+              <% } %>
+      </table>
+      <div class="total-price col-2 offset-10 pt-3 move-left" id="totalPriceDiv">
+        <button type="button" class="btn btn-info">Buy now</button>
       </div>
     </div>
-      
-      <footer class="footer-container">
-          <div class="wrapper-footer">
-              <div class="footer-content">
-                  <h3>Contact Us</h3>
-                  <p>Email: nhpqui21@clc.fitus.edu.vn</p>
-                  <p>Phone: 0787820631</p>
-                  <p>Adress: 135B Tran Hung Dao</p>
-              </div>
-              <div class="footer-content">
-                  <h3>About Us</h3>
-                  <ul class="list">
-                      <li><a href="">Home</a></li>
-                      <li><a href="">About</a></li>
-                      <li><a href="">Services</a></li>
-                      <li><a href="">Contact</a></li>
-                  </ul>
-              </div>
-              <div class="footer-content" style="margin-top: 0px;">
-                  <h3>Follow Us</h3>
-                  <ul class="social-icons">
-                      <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
-                      <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-                      <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-                      <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
-                  </ul>
-              </div>
-          </div>
-          <div class="bottom-bar">
-              <p>&copy; 2023 My company. All rights reserved</p>
-          </div>
-      </footer>
   </div>
+  </div>
+
 </body>
+
 </html>
