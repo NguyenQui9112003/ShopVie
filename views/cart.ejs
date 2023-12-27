@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 
 <head>
   <link rel="stylesheet" href="/cart.css">
@@ -24,20 +23,10 @@
       right: -15px;
     }
   </style>
-=======
-  <head>
-    <link rel="stylesheet" href="/cartStyle.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-    <title>Shopping Cart</title>
->>>>>>> 08239cf9b847d75c2be20f1bf3597372514c049f
 </head>
 
 <body>
   <div class="container">
-<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/user" style="font-size: 2em;"><i class="fa-solid fa-house"
@@ -83,63 +72,10 @@
       </table>
       <div class="total-price col-2 offset-10 pt-3 move-left" id="totalPriceDiv">
         <button type="button" class="btn btn-info">Buy now</button>
-=======
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-              <a class="navbar-brand" href="/user"><i class="fa-solid fa-house"></i>
-                  ShopVie
-              </a>
-          </div>
-      </nav>
-
-      <!--cart-->
-      <div class="small-container cart-page">
-
-        <table id="cartTable">
-          <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-          </tr>
-
-          <% if(products.length > 0) { %>
-            <% products.forEach(product => { %>
-            <tr>
-              <td>
-                <div class="cart-info">
-                  <div class="card"><img src="<%= product.img %>" alt="Product 1"></div>
-                  <div>
-                    <p><%= product.content %></p>
-                    <small class="price">Price: <%= product.price %>.000 VND</small>
-                  </div>
-                </div>
-              </td>
-              <td><input type="number" value="1" id="productNum"></td>
-              <td>
-                <span class="subtotal"><%= product.price %>.000 VND</span><br>
-                <form action="/user/removecart" method="post">
-                  <button type="submit" class="removeBtn" name="content" value="<%= product.content %>">Remove</button>
-                </form>
-              </td>
-            </tr>
-          <% }) %>
-        <% } %>
-
-        </table>
-
-        <div class="total-price col-2 offset-10" id="totalPriceDiv">
-          <button type="button" class="btn btn-info">Buy now</button>
-        </div>
-
->>>>>>> 08239cf9b847d75c2be20f1bf3597372514c049f
       </div>
     </div>
   </div>
   </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 08239cf9b847d75c2be20f1bf3597372514c049f
 </body>
 
 </html>
