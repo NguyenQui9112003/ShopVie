@@ -63,6 +63,7 @@
 
             <% } %>
 
+<<<<<<< HEAD
                 <div class="gallery" id="product">
                     <% if(products.length> 0) { %>
                         <% products.forEach(product=> { %>
@@ -80,6 +81,28 @@
                                 <ul>
                                     <% for(let i=0; i < product.star; i++) { %>
                                         <li><i class="fa-solid fa-star checked"></i></li>
+=======
+        <div class="gallery" id="product">
+            <% if(products.length> 0) { %>
+                <% products.forEach(product=> { %>
+                    <div class="content">
+                        <img src="<%= product.img %>" alt="">
+                        <h3>
+                            <%= product.name %>
+                        </h3>
+                        <p>
+                            <%= product.content %>
+                        </p>
+                        <h5>
+                            <%= product.price %>.000 VND
+                        </h5>
+                        <ul>
+                            <% for(let i=0; i < product.star; i++) { %>
+                                <li><i class="fa-solid fa-star checked"></i></li>
+                                <% } %>
+                                    <% for(let i=0; i < 5 - product.star; i++) { %>
+                                        <li><i class="fa-regular fa-star"></i></li>
+>>>>>>> 08239cf9b847d75c2be20f1bf3597372514c049f
                                         <% } %>
                                             <% for(let i=0; i < 5 - product.star; i++) { %>
                                                 <li><i class="fa-regular fa-star"></i></li>

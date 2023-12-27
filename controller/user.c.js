@@ -110,6 +110,5 @@ module.exports = {
   searchProductUser,
   showCart,
   addToCart,
-  removeFromCart,
-  deleteCart
+  removeFromCart
 };

@@ -163,11 +163,11 @@ module.exports = {
   showInfo,
   updateUserInfo,
   searchProduct,
-  getAllEmailsExceptUsername,
   showCart,
   searchProductForCart,
   addToCart,
   checkDuplicate,
   removeFromCart,
-  deleteCart
+  deleteCart,
+  getAllEmailsExceptUsername
 };

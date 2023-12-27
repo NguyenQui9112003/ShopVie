@@ -75,6 +75,7 @@
                     </div>
                 </nav>
 
+<<<<<<< HEAD
                 <% if (messages.error) { %>
                     <div class="gallery" id="product">
                         <div class="card text-center">
@@ -89,6 +90,50 @@
                             </div>
                             <div class="card-footer text-body-secondary" id="current-time"></div>
                         </div>
+=======
+          <% } %>
+
+        <% if (messages.added) { %>
+        <div class="d-flex justify-content-end alert alert-success" role="alert">
+            <%= messages.added %>
+            </div>
+        <% } %>
+
+        <% if (messages.failed) { %>
+            <div class="d-flex justify-content-end alert alert-success" role="alert">
+                <%= messages.failed %>
+                </div>
+            <% } %>
+
+        <div class="gallery" id="product">
+            <% if(products.length> 0) { %>
+                <% products.forEach(product=> { %>
+                    <div class="content">
+                        <img src="<%= product.img %>" alt="">
+                        <h3>
+                            <%= product.name %>
+                        </h3>
+                        <p>
+                            <%= product.content %>
+                        </p>
+                        <h5>
+                            <%= product.price %>.000 VND
+                        </h5>
+                        <ul>
+                            <% for(let i=0; i < product.star; i++) { %>
+                                <li><i class="fa-solid fa-star checked"></i></li>
+                                <% } %>
+                                    <% for(let i=0; i < 5 - product.star; i++) { %>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                        <% } %>
+                                            <li>
+                                                <%= product.review %> (reviews)
+                                            </li>
+                        </ul>
+                        <form action="/user/addtocart" method="post">
+                            <button type="submit" class="btn btn-primary" name="cart" value="<%= product.content %>">Thêm vào giỏ</button>
+                        </form>
+>>>>>>> 08239cf9b847d75c2be20f1bf3597372514c049f
                     </div>
                     <% } %>
                         <% if (messages.added) { %>
