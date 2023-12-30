@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add product</title>
-  <link rel="stylesheet" href="/info.css">
+  <link rel="stylesheet" href="/register.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
@@ -38,31 +38,36 @@
         <div class="col-md-9">
           <div class="tab-content">
             <hr class="border-light m-0">
-            <form action="/admin/adding" method="post">
+            <form action="/admin/adding" method="post" id="form">
               <div class="card-body">
                 <div class="form-group">
                   <label for="img" class="form-label">Image source</label>
                   <input type="text" class="form-control" id="img" name="img" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group input-control">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" class="form-control" id="name" name="name" required>
+                  <div class="error"></div>
                 </div>
-                <div class="form-group">
+                <div class="form-group input-control">
                   <label for="content" class="form-label">Content</label>
                   <input class="form-control" type="text" id="content" name="content" required>
+                  <div class="error"></div>
                 </div>
-                <div class="form-group">
+                <div class="form-group input-control">
                   <label for="price" class="form-label">Price</label>
                   <input type="text" class="form-control" id="price" name="price" required>
+                  <div class="error"></div>
                 </div>
-                <div class="form-group">
+                <div class="form-group input-control">
                   <label for="star" class="form-label">Star</label>
                   <input type="text" class="form-control" id="star" name="star" required>
+                  <div class="error"></div>
                 </div>
-                <div class="form-group">
+                <div class="form-group input-control">
                   <label for="review" class="form-label">Review</label>
                   <input type="text" class="form-control" id="review" name="review" required>
+                  <div class="error"></div>
                 </div>
               </div>
               <button type="submit" class="btn btn-primary col-2 offset-md-9 custom-button mb-3">Add product</button>
@@ -72,6 +77,102 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const name = document.getElementById('name');
+    const content = document.getElementById('content');
+    const price = document.getElementById('price');
+    const star = document.getElementById('star');
+    const review = document.getElementById('review');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        validateInput();
+    });
+
+    const setError = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add('error');
+        inputControl.classList.remove('success');
+    }
+
+    const setSuccess = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector('.error');
+
+        errorDisplay.innerText = '';
+        inputControl.classList.add('success');
+        inputControl.classList.remove('error');
+    }
+
+    
+    function validateName() {
+        if (name.value.length > 20) {
+            setError(name, 'Tên sản phẩm phải ngắn hơn 20 ký tự');
+        } else {
+            setSuccess(name);
+            return true;
+        }
+    }
+
+    function validateContent() {
+        if (content.value.length > 20) {
+            setError(content, 'Nội dung sản phẩm phải ngắn hơn 20 ký tự');
+        } else {
+            setSuccess(content);
+            return true;
+        }
+    }
+
+    function validatePrice() {
+        if (isNaN(price.value) || price.value < 0) {
+            setError(price, 'Giá sản phẩm phải là số và lớn hơn hoặc bằng 0');
+        } else {
+            setSuccess(price);
+            return true;
+        }
+    }
+
+    function validateStar() {
+        if (isNaN(star.value) || star.value < 0 || star.value > 5) {
+            setError(star, 'Số sao phải là số và nằm trong khoảng từ 0 đến 5');
+        } else {
+            setSuccess(star);
+            return true;
+        }
+    }
+
+    function validateReview() {
+        if (isNaN(review.value) || review.value < 0) {
+            setError(review, 'Số lượt đánh giá phải là số và lớn hơn hoặc bằng 0');
+        } else {
+            setSuccess(review);
+            return true;
+        }
+    }
+
+    const validateInput = () => {
+        const nameValue = name.value.trim();
+        const contentValue = content.value.trim();
+        const priceValue = price.value.trim();
+        const starValue = star.value.trim();
+        const reviewValue = review.value.trim();
+        
+        const isValidName = validateName(nameValue);
+        const isValidContent = validateContent(contentValue);
+        const isValidPrice = validatePrice(priceValue);
+        const isValidStar = validateStar(starValue);
+        const isValidReview = validateReview(reviewValue);
+
+        if(isValidName && isValidContent && isValidPrice && isValidStar && isValidReview) {
+            form.submit();
+        }
+    }
+
+  </script>
 </body>
 
 </html>

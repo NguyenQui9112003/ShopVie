@@ -6,7 +6,7 @@ const cn = {
   host: "localhost",
   port: 5432,
   user: "postgres",
-  password: "207030",
+  password: "123456",
   database: "ShopVie",
   max: 30,
 };
