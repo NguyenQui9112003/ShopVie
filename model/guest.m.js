@@ -14,19 +14,19 @@ const showProducts = async () => {
 };
 
 const searchProduct = async (search) => {
-  let con = null;
-  try {
-    con = await db.connect();
-    const products = await con.query(
-      'SELECT * FROM "Products" WHERE name = $1',
-      [search]
-    );
-    return products;
-  } catch (error) {
-    throw error;
-  } finally {
-    if (con) con.done();
-  }
+    let con = null;
+    try {
+        con = await db.connect();
+        const products = await con.query(
+        `SELECT * FROM "Products" WHERE "Products".name ILIKE '%' || $1 || '%'`,
+        [search]
+        );
+        return products;
+    } catch (error) {
+        throw error;
+    } finally {
+        if (con) con.done();
+    }
 };
 
 module.exports = {
