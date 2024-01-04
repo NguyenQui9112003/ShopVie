@@ -39,20 +39,21 @@ const update = async (req, res) => {
 };
 
 const updateProduct = async (req, res, next) => {
-  try {
-    await adminM.updateProduct(
-      req.body.img,
-      req.body.name,
-      req.body.content,
-      parseInt(req.body.price),
-      parseInt(req.body.star),
-      parseInt(req.body.review),
-      req.body.nameItem
-    );
-    res.redirect("/admin");
-  } catch (error) {
-    next(error);
-  }
+let nameItem = req.body.content
+    try {
+        await adminM.updateProduct(
+        req.body.img,
+        req.body.name,
+        req.body.content,
+        parseInt(req.body.price),
+        parseInt(req.body.star),
+        parseInt(req.body.review),
+        nameItem
+        );
+        res.redirect("/admin");
+    } catch (error) {
+        next(error);
+    }
 };
 
 const deleteProduct = async (req, res, next) => {
