@@ -84,7 +84,7 @@ const searchProduct = async (search) => {
   try {
     con = await db.connect();
     const products = await con.query(
-      'SELECT * FROM "Products" WHERE name = $1',
+        `SELECT * FROM "Products" WHERE "Products".name ILIKE '%' || $1 || '%'`,
       [search]
     );
     return products;

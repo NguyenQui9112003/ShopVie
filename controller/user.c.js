@@ -120,6 +120,15 @@ const checkDuplicate = async (search) => {
   }
 };
 
+const deleteCart = async (req, res, next) => {
+    try{
+        await userM.deleteCart()
+        next()
+    } catch (error){
+        next(error)
+    }
+}
+
 module.exports = {
   userPage,
   userInfo,
@@ -130,4 +139,5 @@ module.exports = {
   addToCart,
   removeFromCart,
   checkDuplicate,
+  deleteCart
 };
